@@ -326,7 +326,7 @@ do
 		cin.getline(info[i].automen.techpassnumber, 25);
 
 
-		if (i < Size)
+		if (i == Size-1)
 		{
 			int number;
 
