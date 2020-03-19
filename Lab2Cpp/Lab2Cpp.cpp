@@ -64,9 +64,10 @@ struct MEN
 void search(MEN* info, int Size)
 {
 	int z, k, c = 0;
-	string Surname, markautosearch;
+	string Surname, markautosearch, technumberauto, numberauto;
 
 	cout << "Если вы хотите найти нужного вам человека по фамилии нажмите - 1 или найти по  марке авто нажмите - 2\n";
+	cout << "по техническому номеру - 3, по номеру авто - 4\n";
 	cout << "Введите соответствующий номер для поиска либо 0 для пропуска поиска: ";
 	cin >> z;
 	cout << endl;
@@ -156,6 +157,93 @@ void search(MEN* info, int Size)
 
 		cout << endl;
 	}
+	
+	if (z == 3)
+	{
+		cout << "Введите номер техпаспрорта автомобиля: ";
+		cin >> technumberauto;
+		cout << endl;
+
+		for (int i = 0; i < Size; i++)
+		{
+			if (technumberauto == info[i].automen.brand)
+			{
+				cout << "Фамилия имя отчество : " << info[i].name.Surname << " " << info[i].name.Name << " " << info[i].name.MiddleName << endl;
+				cout << "Номер телефона : " << info[i].numberphone.PhoneNumber << endl;
+				cout << "Почтовый индекс : " << info[i].addresshome.zipcode << endl << "Страна : " << info[i].addresshome.state << endl << "Регион : " << info[i].addresshome.region << endl << "Город : " << info[i].addresshome.city << endl << "Район : " << info[i].addresshome.district << endl << "Улица : " << info[i].addresshome.street << endl << "Дом : " << info[i].addresshome.homenumber << endl << "Квартира : " << info[i].addresshome.apartment << endl;
+				cout << "Марка авто : " << info[i].automen.brand << endl << "Номер авто : " << info[i].automen.autonumber << endl << "Номер техпаспрорта автомобиля : " << info[i].automen.techpassnumber << endl << endl;
+
+				c++;
+			}
+		}
+
+		if (c == 0)
+		{
+			cout << "C данным техническим номером авто нету" << endl;
+		}
+
+		cout << endl;
+		cout << "Хотите продолжить? Да - 1, Нет - 0: ";
+		cin >> k;
+		cout << endl;
+
+		if (k == 1)
+		{
+			search(info, Size);
+			c = 0;
+		}
+
+		else if (k == 0)
+		{
+			c = 0;
+		}
+
+		cout << endl;
+	}
+
+	if (z == 4)
+	{
+		cout << "Введите номер автомобиля: ";
+		cin >> numberauto;
+		cout << endl;
+
+		for (int i = 0; i < Size; i++)
+		{
+			if (numberauto == info[i].automen.brand)
+			{
+				cout << "Фамилия имя отчество : " << info[i].name.Surname << " " << info[i].name.Name << " " << info[i].name.MiddleName << endl;
+				cout << "Номер телефона : " << info[i].numberphone.PhoneNumber << endl;
+				cout << "Почтовый индекс : " << info[i].addresshome.zipcode << endl << "Страна : " << info[i].addresshome.state << endl << "Регион : " << info[i].addresshome.region << endl << "Город : " << info[i].addresshome.city << endl << "Район : " << info[i].addresshome.district << endl << "Улица : " << info[i].addresshome.street << endl << "Дом : " << info[i].addresshome.homenumber << endl << "Квартира : " << info[i].addresshome.apartment << endl;
+				cout << "Марка авто : " << info[i].automen.brand << endl << "Номер авто : " << info[i].automen.autonumber << endl << "Номер техпаспрорта автомобиля : " << info[i].automen.techpassnumber << endl << endl;
+
+				c++;
+			}
+		}
+
+		if (c == 0)
+		{
+			cout << "C данным номером авто нету" << endl;
+		}
+
+		cout << endl;
+		cout << "Хотите продолжить? Да - 1, Нет - 0: ";
+		cin >> k;
+		cout << endl;
+
+		if (k == 1)
+		{
+			search(info, Size);
+			c = 0;
+		}
+
+		else if (k == 0)
+		{
+			c = 0;
+		}
+
+		cout << endl;
+	}
+
 }
 
 
@@ -164,7 +252,7 @@ void sortirovka(MEN* info, int Size)
 	int g;
 	cout << "Что бы отсортировать людей нужно выбрать как вы хотите сортировать.\n" << endl;
 	cout << "Если хотите отсортировать по номеру техпаспрорта автомобиля нажмите 1," << endl;
-	cout << "если по номеру авто нажмите - 2, если Вы не хотите сортировать нажмите - 0:";
+	cout << "если по номеру авто нажмите - 2, eсли по фамилии -3, если Вы не хотите сортировать нажмите - 0:";
 	cin >> g;
 
 	if (g == 1)
@@ -191,6 +279,23 @@ void sortirovka(MEN* info, int Size)
 			for (int i = 0; i < Size - 1; i++)
 			{
 				if (info[i].automen.autonumber > info[i + 1].automen.autonumber)
+				{
+					MEN temp = info[i];
+					info[i] = info[i + 1];
+					info[i + 1] = temp;
+				}
+			}
+		}
+
+	}
+
+	else if (g == 3)
+	{
+		for (int i = 0; i < Size; i++)
+		{
+			for (int i = 0; i < Size - 1; i++)
+			{
+				if (info[i].name.Surname > info[i+1].name.Surname)
 				{
 					MEN temp = info[i];
 					info[i] = info[i + 1];
